@@ -96,7 +96,7 @@ public class Poker {
 			new String[] {"C2", "D2", "H2", "S3", "S4"}, 5));
 	}*/
 	
-	//public void testFindBugs() { String a=null;
-	//if(a.equals("")) return; }
+	public void testFindBugs() { String a=null;
+	if(a.equals("")) return; }
 }
 // end of Poker.java
