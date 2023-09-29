@@ -1,0 +1,102 @@
+package poker;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Poker.
+ */
+public class Poker {
+	
+	/**
+	 * Checks if is full house.
+	 *
+	 * @param cards the cards of the poker
+	 * @param n the size
+	 * @return true, if the input is full house
+	 */
+	// Precondition: A hand of n cards have been sorted by card number.
+	public boolean isFullHouse(String cards[], int n) {
+		return isThreeOfaKind(cards, n) && isTwoPairs(cards, n);
+	}
+
+	
+
+	/**
+	 * Checks if is three of a kind.
+	 *
+	 * @param cards the cards
+	 * @param n the n
+	 * @return true, if is three of a kind
+	 */
+	// Precondition: A hand of n cards have been sorted by card number.
+	public boolean isThreeOfaKind(String cards[], int n) {
+		for (int i=0; i<n-2; i++) {
+			if (cards[i].charAt(1) == cards[i+1].charAt(1) &&
+					cards[i+1].charAt(1) == cards[i+2].charAt(1))
+					return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Checks if is two pairs.
+	 *
+	 * @param cards the cards
+	 * @param n the n
+	 * @return true, if is two pairs
+	 */
+	// Precondition: A hand of n cards have been sorted by card number.
+	public boolean isTwoPairs(String cards[], int n) {
+		int count = 0;
+		for (int i=0; i<n-1; i++) {
+			if (cards[i].charAt(1) == cards[i+1].charAt(1)) {
+				count++;
+				i++;
+			}
+		}
+		if (isFourOfAKind(cards, n)) {
+			return false;
+		}else if (count == 2) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
+	public boolean isFourOfAKind(String cards[], int n) {
+		boolean isFour = false;
+		for (int i=0; i<2; i++) {
+			if (cards[i].charAt(1) == cards[i+3].charAt(1)) {
+				isFour = true;
+			}
+		}
+		return isFour;
+	}
+	
+	public void sort(String cards[],int n) {
+		//String[] house = {"H","S","C","D"};
+		String temp = "";
+		for (int i=0; i<n; i++) {
+			if (cards[i].charAt(1) < cards[i+1].charAt(1)) {
+				temp = cards[i];
+				cards[i] = cards[i+1];
+				cards[i+1] = cards[i];
+			}
+		}
+	}
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
+	/*public static void main(String args[]) {
+		System.out.println(new Poker().isFullHouse(
+			new String[] {"C2", "D2", "H2", "S3", "S4"}, 5));
+	}*/
+	
+	//public void testFindBugs() { String a=null;
+	//if(a.equals("")) return; }
+}
+// end of Poker.java
